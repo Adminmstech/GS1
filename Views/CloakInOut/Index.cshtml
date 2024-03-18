@@ -1,0 +1,73 @@
+﻿@model IEnumerable<GS.Models.GetCloakinout>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<main class="app-content">
+    <div class="col-md-15">
+        <div class="tile">
+
+            <h2>CloakInOut Info</h2>
+
+            <p>
+                @*@Html.ActionLink("Create New", "Create")*@
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Staff_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Record_Time)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Record_Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.InOut)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Location)
+                    </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comments)
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>*@
+
+                </tr>
+
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Staff_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Record_Time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trimmed_Record_Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InOut)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>*@
+
+            </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</main>

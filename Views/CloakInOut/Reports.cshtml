@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<main class="app-content">
+    <div class="col-md-15">
+        <div class="tile">
+            <h2>Reports</h2>
+            <p> </p>
+
+            <div>
+                <form>
+
+                    <label><b>Staff</b></label>
+                    <select id="StaffId" name="StaffId" class="col-md-5">
+                        
+                    </select>
+
+
+                    <nbsp> </nbsp>
+
+                    <label><b>From</b></label>
+                    <input type="date" id="Datefrom" name="Datefrom" />
+
+
+                    <nbsp> </nbsp>
+
+                    <label><b>To</b></label>
+                    <input type="date" id="Dateto" name="Dateto" />
+
+
+                    <nbsp> </nbsp>
+                    <button type="button" id="btnsub">Submit</button>
+                    <nbsp> </nbsp>
+                </form>
+            </div>
+
+            <p> </p>
+
+
+            <div>
+                <table class="table table-striped table-bordered table-active table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Staff_Name</th>
+
+                            <th scope="col">Record_Time</th>
+                            <th scope="col">Record_Date</th>
+                            <th scope="col">InOut</th>
+                            <th scope="col">Comments</th>
+
+
+
+                        </tr>
+
+                    <thead>
+                    <tbody id="tbldata123">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="">
+    <meta property="twitter:creator" content="">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <title>Lifeline</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header">
+
+        <img src="~/Content/images/header-logo.png" width="120" height="50">
+
+        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+        <!-- Navbar Right Menu-->
+        <ul class="app-nav">
+            <li class="app-search">
+                <input class="app-search__input" type="search" placeholder="Search">
+                <button class="app-search__button"><i class="fa fa-search"></i></button>
+            </li>
+            <!--Notification Menu-->
+            <li class="dropdown">
+                <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+                <ul class="app-notification dropdown-menu dropdown-menu-right">
+                </ul>
+            </li>
+            <!-- User Menu-->
+            <li class="dropdown">
+                <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+                <ul class="dropdown-menu settings-menu dropdown-menu-right">
+                    <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
+                    <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
+                    <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+
+
+        <ul class="app-menu">
+            <li><a class="app-menu__item active" href="#"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+            <li class="treeview">
+                <a class="app-menu__item" href="@Url.Action("Index","Staff")"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Staff</span></a>
+            </li>
+            <li class="treeview">
+                <a class="app-menu__item" href="@Url.Action("Index","CloakInOut")"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">CloakInOut</span></a>
+            </li>
+            <li class="treeview">
+                <a class="app-menu__item" href="@Url.Action("Reports","CloakInOut")"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Reports</span></a>
+            </li>
+            <li class="treeview">
+                <a class="app-menu__item" href="@Url.Action("StaffWorkingHours","Staff")"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Working Hours</span></a>
+            </li>
+        </ul>
+
+    </aside>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <!-- Essential javascripts for application to work-->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="~/Scripts/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="~/Scripts/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+        if (document.location.hostname == 'pratikborsadiya.in') {
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-72504830-1', 'auto');
+            ga('send', 'pageview');
+        }
+    </script>
+
+
+    <script>
+
+         $(document).ready(function () {
+ 
+            $.ajax({
+                url: "/api/Getstaffdd", // Replace with your service URL
+                method: "GET",
+
+               
+                contentType: "application/json",
+                dataType: "json", // Specify the expected data type
+                success: function (data) {
+                
+                    var ddl = $('#StaffId');
+
+                    // Clear existing options (if any)
+                    ddl.empty();
+                    ddl.append('<option value="0">Select Staff Name</option>')
+                    // Loop through the data and append options to the Dropdown List
+                    $.each(data, function (index, item) {
+                        ddl.append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                    });
+                }
+
+            });
+        });
+
+        $(document).ready(function () {
+            // Attach a click event to the button
+            $("#btnsub").click(function () {
+                // Make an AJAX GET request to the service
+                var data123 = {
+                    StaffId: $("#StaffId").val(),
+                    Datefrom: $("#Datefrom").val(),
+                    Dateto: $("#Dateto").val()
+
+                }
+                console.log("Data received:", data123);
+                alert('TEST')
+
+
+
+                $.ajax({
+                    url: "/api/getcloakinoutbystaffidbtwdates", // Replace with your service URL
+                    method: "POST",
+                    data: JSON.stringify(data123),
+                    contentType: "application/json",
+                    dataType: "json", // Specify the expected data type
+                    success: function (data) {
+                        // Handle the successful response
+                        var row = '';
+                        if (data.length > 0) {
+                            $.each(data, function (i, item) {
+                                row += "<tr><td>" + item.Staff_Name + "</td><td>" + item.Record_Time + "</td><td>" + item.Trimmed_Record_Date + "</td><td>" + item.InOut + "</td><td>" + item.Comments + "</td></tr>";
+                            });
+                            $("#tbldata123").html(row)
+                        } else { $("#tbldata123").html("<tr><td>No Data Found</td></td></tr>"); }
+                        console.log(data);
+
+                        // Display the result in the resultContainer
+
+                    },
+                    //error: function (xhr, status, error) {
+                    //    // Handle errors
+                    //    console.error("Error:", error);
+                    //    $("#resultContainer").html("<p>Error occurred while fetching data.</p>");
+                    //}
+                });
+            });
+        });
+        $(document).ready(function () {
+            // Attach a click event to the button
+            $("#btnsub143").click(function () {
+                // Make an AJAX GET request to the service
+                var data143 = {
+                    Month : $("#Month").val(),
+                    Year: $("#Year").val()
+                     
+                }
+                console.log("Data received:", data143);
+                alert('TEST')
+
+
+
+                $.ajax({
+                    url: "/api/StaffWorkingHours", // Replace with your service URL
+                    method: "POST",
+                    data: JSON.stringify(data143),
+                    contentType: "application/json",
+                    dataType: "json", // Specify the expected data type
+                    success: function (data) {
+                        // Handle the successful response
+                        var row = '';
+                        if (data.length > 0) {
+                            $.each(data, function (i, item) {
+                                row += "<tr><td>" + item.Staff_Code + "</td><td>" + item.Staff_Name + "</td><td>" + item.Mobile + "</td><td>" + item.Designation + "</td><td>" + item.Hourly_Rate + "</td><td>" + item.ClockOut_Time + "</td><td>" + item.ClockIn_Time + "</td><td>" + item.Working_Hours + "</td><td>" + item.Earnings + "</td></tr>";
+                            });
+                            $("#tbldata143").html(row)
+                        } else { $("#tbldata143").html("<tr><td>No Data Found</td></td></tr>"); }
+                        console.log(data);
+
+                        // Display the result in the resultContainer
+
+                    },
+                    //error: function (xhr, status, error) {
+                    //    // Handle errors
+                    //    console.error("Error:", error);
+                    //    $("#resultContainer").html("<p>Error occurred while fetching data.</p>");
+                    //}
+                });
+            });
+        });
+    </script>
+
+</body>
+ 
+</html>
